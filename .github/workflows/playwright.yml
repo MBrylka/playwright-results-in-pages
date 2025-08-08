@@ -42,8 +42,8 @@ jobs:
       run: |
         RUN_ID=${GITHUB_RUN_ID}
         DATE=$(date +"%Y-%m-%d %H:%M:%S")
-        PASSED=$(jq '[.suites[].tests[] | select(.status=="passed")] | length' report.json)
-        FAILED=$(jq '[.suites[].tests[] | select(.status=="failed")] | length' report.json)
+        PASSED=$(jq '[.suites[].specs[].tests[] | select(.status=="expected")] | length' report.json)
+        FAILED=$(jq '[.suites[].specs[].tests[] | select(.status=="unexpected")] | length' report.json)
         ROW="<tr><td>${DATE}</td><td>${PASSED}</td><td>${FAILED}</td><td><a href='reports/${RUN_ID}/index.html'>View Report</a></td></tr>"
 
         mkdir -p public
