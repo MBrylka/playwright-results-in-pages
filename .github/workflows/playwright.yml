@@ -25,7 +25,7 @@ jobs:
     
     # Enable trace on first retry (so failed tests have trace)
     - name: Run Playwright tests
-      run: npx playwright test --trace on-first-retry --reporter=html,json
+      run: npx playwright test --trace on-first-retry --reporter=html,json=report.json
 
     # Prepare report folder with run ID
     - name: Prepare report folder
@@ -42,15 +42,17 @@ jobs:
       run: |
         RUN_ID=${GITHUB_RUN_ID}
         DATE=$(date +"%Y-%m-%d %H:%M:%S")
-        PASSED=$(jq '[.suites[].tests[] | select(.status=="passed")] | length' playwright-report.json)
-        FAILED=$(jq '[.suites[].tests[] | select(.status=="failed")] | length' playwright-report.json)
+        PASSED=$(jq '[.suites[].tests[] | select(.status=="passed")] | length' report.json)
+        FAILED=$(jq '[.suites[].tests[] | select(.status=="failed")] | length' report.json)
         ROW="<tr><td>${DATE}</td><td>${PASSED}</td><td>${FAILED}</td><td><a href='reports/${RUN_ID}/index.html'>View Report</a></td></tr>"
 
+        mkdir -p public
         if [ ! -f public/index.html ]; then
           echo "<html><body><h1>Playwright Test Results</h1><table border='1'><tr><th>Run date</th><th>Tests passed</th><th>Tests failed</th><th>Link</th></tr>${ROW}</table></body></html>" > public/index.html
         else
           sed -i "s|</table>|${ROW}</table>|" public/index.html
         fi
+
 
     # Deploy to GitHub Pages
     - name: Deploy to GitHub Pages
