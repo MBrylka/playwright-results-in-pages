@@ -25,7 +25,7 @@ jobs:
     
     # Enable trace on first retry (so failed tests have trace)
     - name: Run Playwright tests
-      run: npx playwright test --trace on-first-retry --reporter=html,json=report.json
+      run: npx playwright test --trace on-first-retry
 
     # Prepare report folder with run ID
     - name: Prepare report folder
