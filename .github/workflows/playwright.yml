@@ -66,8 +66,8 @@ jobs:
         id: stats
         run: |
           REPORT_JSON="new-reports/${{ github.run_number }}/report.json"
-          PASSED=$(jq '[.suites[].specs[].tests[] | select(.results[].status=="passed")] | length' "$REPORT_JSON")
-          FAILED=$(jq '[.suites[].specs[].tests[] | select(.results[].status=="failed")] | length' "$REPORT_JSON")
+          PASSED=$(jq '[.suites[].specs[].tests[] | select(.results[].status=="expected")] | length' "$REPORT_JSON")
+          FAILED=$(jq '[.suites[].specs[].tests[] | select(.results[].status=="unexpected")] | length' "$REPORT_JSON")
           TOTAL=$(jq '[.suites[].specs[].tests[]] | length' "$REPORT_JSON")
           echo "passed=$PASSED" >> $GITHUB_OUTPUT
           echo "failed=$FAILED" >> $GITHUB_OUTPUT
@@ -82,7 +82,7 @@ jobs:
             passed: ${{ steps.stats.outputs.passed }}
             failed: ${{ steps.stats.outputs.failed }}
             total: ${{ steps.stats.outputs.total }}
-            link: /$REPO_NAME/reports/${{ github.run_number }}/index.html" >> _data/runs.yml
+            link: /${{ github.event.repository.name }}/reports/${{ github.run_number }}/index.html" >> _data/runs.yml
 
       - name: Ensure Jekyll config exists
         run: |
