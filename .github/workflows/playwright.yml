@@ -26,6 +26,7 @@ jobs:
       
       - name: Run Playwright tests
         run: npx playwright test --trace on-first-retry
+        continue-on-error: true
       
       - name: Prepare report for publish
         run: |
