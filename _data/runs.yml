@@ -4,3 +4,9 @@
   failed: 0
   total: 6
   link: /reports/16/index.html
+- run: 18
+  date: 2025-08-10 15:43:03
+  passed: 3
+  failed: 0
+  total: 6
+  link: //reports/18/index.html
