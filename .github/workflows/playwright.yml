@@ -66,8 +66,8 @@ jobs:
         id: stats
         run: |
           REPORT_JSON="new-reports/${{ github.run_number }}/report.json"
-          PASSED=$(jq '[.suites[].specs[].tests[] | select(.results[].status=="expected")] | length' "$REPORT_JSON")
-          FAILED=$(jq '[.suites[].specs[].tests[] | select(.results[].status=="unexpected")] | length' "$REPORT_JSON")
+          PASSED=$(jq '[.suites[].specs[].tests[] | select(.status=="expected")] | length' "$REPORT_JSON")
+          FAILED=$(jq '[.suites[].specs[].tests[] | select(.status=="unexpected")] | length' "$REPORT_JSON")
           TOTAL=$(jq '[.suites[].specs[].tests[]] | length' "$REPORT_JSON")
           echo "passed=$PASSED" >> $GITHUB_OUTPUT
           echo "failed=$FAILED" >> $GITHUB_OUTPUT
