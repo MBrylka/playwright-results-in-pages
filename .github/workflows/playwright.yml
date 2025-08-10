@@ -90,7 +90,7 @@ jobs:
             echo "theme: minima" >> _config.yml
           fi
           if [ ! -f index.md ]; then
-            cat <<'EOF' > index.md
+cat <<'EOF' > index.md
 ---
 layout: default
 title: Playwright Reports
