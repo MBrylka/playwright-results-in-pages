@@ -81,7 +81,7 @@ jobs:
             passed: ${{ steps.stats.outputs.passed }}
             failed: ${{ steps.stats.outputs.failed }}
             total: ${{ steps.stats.outputs.total }}
-            link: /reports/${{ github.run_number }}/index.html" >> _data/runs.yml
+            link: /$REPO_NAME/reports/${{ github.run_number }}/index.html" >> _data/runs.yml
 
       - name: Ensure Jekyll config exists
         run: |
