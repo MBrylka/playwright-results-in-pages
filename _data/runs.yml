@@ -10,3 +10,9 @@
   failed: 0
   total: 6
   link: //reports/18/index.html
+- run: 19
+  date: 2025-08-10 16:27:01
+  passed: 0
+  failed: 0
+  total: 6
+  link: /playwright-results-in-pages/reports/19/index.html
