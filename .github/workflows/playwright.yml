@@ -56,9 +56,10 @@ jobs:
 
       - name: Clone existing gh-pages branch
         run: |
-          git clone --branch gh-pages https://github.com/${{ github.repository }} gh-pages
+          git clone --branch gh-pages https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }} gh-pages
           mkdir -p gh-pages/reports
           cp -r new-reports/* gh-pages/reports/
+
 
       - name: Parse Playwright JSON to get stats
         id: stats
