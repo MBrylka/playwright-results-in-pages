@@ -22,3 +22,9 @@
   failed: 3
   total: 6
   link: /playwright-results-in-pages/reports/20/index.html
+- run: 21
+  date: 2025-08-12 09:09:50
+  passed: 3
+  failed: 3
+  total: 6
+  link: /playwright-results-in-pages/reports/21/index.html
